@@ -103,7 +103,7 @@ class Country {
       //print('#### $countryData ****');
       return countryData;
     } catch (e) {
-      print('An error Occued ${e}');
+      print('An error Occued $e');
       return countryData;
     }
   }

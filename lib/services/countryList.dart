@@ -33,7 +33,7 @@ class Countries {
 
   static Future<List<Countries>> getAllCountries() async {
     var data = await http.get("https://api.covid19api.com/countries");
-    var jsonData = countriesFromJson(data.body);
+    List<Countries> jsonData = countriesFromJson(data.body);
     return jsonData;
   }
 }

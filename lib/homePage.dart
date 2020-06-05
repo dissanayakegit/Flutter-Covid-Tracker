@@ -1,8 +1,8 @@
 import 'package:chart_test1/services/countryList.dart';
 import 'package:chart_test1/services/covidSummery.dart';
-import 'package:chart_test1/summeryChart.dart';
 import 'package:flutter/material.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -62,58 +62,61 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Colors.blue[900],
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              _searchableDropdown(),
-              Card(
-                child: ListTile(
-                  title: Text('Country : $selectedCountryName'),
-                  // onTap: Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SummeryChart())),
-                ),
-                color: Colors.pink[200],
-              ),
-              Card(
-                child: ListTile(
-                  title: Text('Total Confirmed : $countrytotalConfirmed'),
-                ),
-                color: Colors.amber[900],
-              ),
-              Card(
-                child: ListTile(
-                  title: Text('New Confirmed : $countryNewConfirmed'),
-                ),
-                color: Colors.amber[500],
-              ),
-              Card(
-                child: ListTile(
-                  title: Text('New Deaths : $countryNewDeaths'),
-                ),
-                color: Colors.red[500],
-              ),
-              Card(
-                child: ListTile(
-                  title: Text('Total Deaths : $countryTotalDeaths'),
-                ),
-                color: Colors.red[700],
-              ),
-              Card(
-                child: ListTile(
-                  title: Text('New Recovered : $countryNewRecovered'),
-                ),
-                color: Colors.blue[400],
-              ),
-              Card(
-                child: ListTile(
-                  title: Text('Total Recovered : $countryTotalRecovered'),
-                ),
-                color: Colors.lightGreenAccent[400],
-              ),
-            ],
+      body: StaggeredGridView.count(
+        crossAxisCount: 3,
+        crossAxisSpacing: 5.0,
+        mainAxisSpacing: 5.0,
+        children: <Widget>[
+          _searchableDropdown(),
+          Card(
+            color: Colors.green[800],
+            child: Center(
+                child: Text('$selectedCountryName',
+                    style: TextStyle(fontSize: 25.0),
+                    textAlign: TextAlign.center)),
           ),
-        ),
+          customeTime2("New Case", countryNewConfirmed, 0xFF1E88E5),
+          customeTime2("Total Case", countrytotalConfirmed, 0xFF311B92),
+          customeTime2("New Recoverd", countryNewRecovered, 0xFF00E676),
+          customeTime2("Total Recoverd", countryTotalRecovered, 0xFF76FF03),
+          customeTime2("Total Deaths", countryTotalDeaths, 0xFFF44336),
+          customeTime2("New Deaths", countryNewDeaths, 0xFFD32F2F),
+          // Card(
+          //   color: Colors.red[700],
+          //   child: Center(
+          //       child: Text('Global',
+          //           style: TextStyle(fontSize: 25.0),
+          //           textAlign: TextAlign.center)),
+          // ),
+          // customeTime2("New Case", countryNewConfirmed, 0xFF1E88E5),
+          // customeTime2("Total Case", countrytotalConfirmed, 0xFF311B92),
+          // customeTime2("New Recoverd", countryNewRecovered, 0xFF00E676),
+          // customeTime2("Total Recoverd", countryTotalRecovered, 0xFF76FF03),
+          // customeTime2("Total Deaths", countryTotalDeaths, 0xFFF44336),
+          // customeTime2("New Deaths", countryNewDeaths, 0xFFD32F2F),
+        ],
+        staggeredTiles: [
+          //local
+          StaggeredTile.extent(3, 70), //for dropbox
+          StaggeredTile.extent(3, 50), //for title
+          //above is title
+          StaggeredTile.extent(1, 80),
+          StaggeredTile.extent(2, 200),
+          StaggeredTile.extent(1, 80),
+          StaggeredTile.extent(1, 170),
+          StaggeredTile.extent(1, 130),
+          StaggeredTile.extent(1, 130),
+
+          //global
+          //StaggeredTile.extent(3, 50), //for title
+          //above is title
+          // StaggeredTile.extent(1, 80),
+          // StaggeredTile.extent(2, 200),
+          // StaggeredTile.extent(1, 80),
+          // StaggeredTile.extent(1, 170),
+          // StaggeredTile.extent(2, 130),
+          // StaggeredTile.extent(2, 130),
+        ],
       ),
     );
   }
@@ -138,5 +141,51 @@ class _HomePageState extends State<HomePage> {
       },
       isExpanded: true,
     );
+  }
+
+  Widget customeTime2(String text, int amount, int color) {
+    return Card(
+        color: Color(color),
+        elevation: 8.0,
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Flexible(
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Flexible(
+                    child: Text(
+                      '$amount',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }
