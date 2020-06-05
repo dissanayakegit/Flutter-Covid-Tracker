@@ -3,6 +3,7 @@ import 'package:chart_test1/services/covidSummery.dart';
 import 'package:flutter/material.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,6 +19,9 @@ class _HomePageState extends State<HomePage> {
   String selectedRegion;
   Map _countryData;
 
+  Global global = Global();
+  Map _globalData;
+
   var selectedCountryName;
   var countryName;
   var countrytotalConfirmed;
@@ -26,6 +30,7 @@ class _HomePageState extends State<HomePage> {
   var countryTotalDeaths;
   var countryNewRecovered;
   var countryTotalRecovered;
+  var dateOfStatus;
 
   @override
   void initState() {
@@ -34,6 +39,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void init() async {
+    _globalData = await global.getGlobalData();
+    //print('$_globalData');
+
     _list = await Countries.getAllCountries();
     selectedRegion = 'Sri Lanka'; //this must be initialized here....
     setState(() {});
@@ -51,6 +59,7 @@ class _HomePageState extends State<HomePage> {
       countryTotalDeaths = _countryData['TotalDeaths'];
       countryNewRecovered = _countryData['NewRecovered'];
       countryTotalRecovered = _countryData['TotalRecovered'];
+      dateOfStatus = _countryData['Date'];
     });
   }
 
@@ -70,10 +79,20 @@ class _HomePageState extends State<HomePage> {
           _searchableDropdown(),
           Card(
             color: Colors.green[800],
-            child: Center(
-                child: Text('$selectedCountryName',
-                    style: TextStyle(fontSize: 25.0),
-                    textAlign: TextAlign.center)),
+            child: Row(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  '$selectedCountryName',
+                  style: TextStyle(fontSize: 15.0),
+                ),
+              ),
+              SizedBox(width: 40.0),
+              Text(
+                '${DateFormat("yMMMMd").add_jm().format(DateTime.parse(dateOfStatus))}',
+                style: TextStyle(fontSize: 15.0),
+              )
+            ]),
           ),
           customeTime2("New Case", countryNewConfirmed, 0xFF1E88E5),
           customeTime2("Total Case", countrytotalConfirmed, 0xFFE040FB),

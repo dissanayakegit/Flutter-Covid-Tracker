@@ -43,6 +43,22 @@ class Global {
         newRecovered: json['NewRecovered'],
         totalRecovered: json['TotalRecovered']);
   }
+
+  Future<Map<String, dynamic>> getGlobalData() async {
+    Map<dynamic, dynamic> globalData = {};
+    final String url = 'https://api.covid19api.com/summary';
+
+    try {
+      var response = await http.get(url);
+      var jsondata = jsonDecode(response.body);
+      dynamic globalData = jsondata['Global'];
+
+      return globalData;
+    } catch (e) {
+      print('An error Occued $e');
+      return globalData;
+    }
+  }
 }
 
 class Country {
@@ -100,7 +116,6 @@ class Country {
           countryData = country;
         }
       });
-      //print('#### $countryData ****');
       return countryData;
     } catch (e) {
       print('An error Occued $e');
