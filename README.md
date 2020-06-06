@@ -1,4 +1,4 @@
-# chart_test1
+# Covid19 Tracker
 
 A new Flutter project.
 
