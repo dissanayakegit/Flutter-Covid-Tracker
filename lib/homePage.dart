@@ -22,6 +22,8 @@ class _HomePageState extends State<HomePage> {
   Global global = Global();
   Map _globalData;
 
+  String updatedTime;
+
   var selectedCountryName;
   var countryName;
   var countrytotalConfirmed;
@@ -32,6 +34,14 @@ class _HomePageState extends State<HomePage> {
   var countryTotalRecovered;
   var dateOfStatus;
 
+  var globalName;
+  var globaltotalConfirmed;
+  var globalNewConfirmed;
+  var globalNewDeaths;
+  var globalTotalDeaths;
+  var globalNewRecovered;
+  var globalTotalRecovered;
+
   @override
   void initState() {
     init();
@@ -40,7 +50,7 @@ class _HomePageState extends State<HomePage> {
 
   void init() async {
     _globalData = await global.getGlobalData();
-    //print('$_globalData');
+    print('$_globalData');
 
     _list = await Countries.getAllCountries();
     selectedRegion = 'Sri Lanka'; //this must be initialized here....
@@ -50,6 +60,9 @@ class _HomePageState extends State<HomePage> {
 
   _getCountryData(region) async {
     _countryData = await Country.getCountryData(region);
+    updatedTime = await DateFormat("yMMMMd")
+        .add_jm()
+        .format(DateTime.parse(_countryData['Date']));
 
     setState(() {
       selectedCountryName = _countryData['Country'];
@@ -60,6 +73,13 @@ class _HomePageState extends State<HomePage> {
       countryNewRecovered = _countryData['NewRecovered'];
       countryTotalRecovered = _countryData['TotalRecovered'];
       dateOfStatus = _countryData['Date'];
+
+      globaltotalConfirmed = _globalData['TotalConfirmed'];
+      globalNewConfirmed = _globalData['NewConfirmed'];
+      globalNewDeaths = _globalData['NewDeaths'];
+      globalTotalDeaths = _globalData['TotalDeaths'];
+      globalNewRecovered = _globalData['NewRecovered'];
+      globalTotalRecovered = _globalData['TotalRecovered'];
     });
   }
 
@@ -79,7 +99,7 @@ class _HomePageState extends State<HomePage> {
           _searchableDropdown(),
           Card(
             color: Colors.green[800],
-            child: Row(children: <Widget>[
+            child: Column(children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
@@ -89,7 +109,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(width: 40.0),
               Text(
-                '${DateFormat("yMMMMd").add_jm().format(DateTime.parse(dateOfStatus))}',
+                '$updatedTime',
                 style: TextStyle(fontSize: 15.0),
               )
             ]),
@@ -100,41 +120,41 @@ class _HomePageState extends State<HomePage> {
           customeTime2("Total Recoverd", countryTotalRecovered, 0xFF76FF03),
           customeTime2("Total Deaths", countryTotalDeaths, 0xFFF44336),
           customeTime2("New Deaths", countryNewDeaths, 0xFFD32F2F),
-          // Card(
-          //   color: Colors.red[700],
-          //   child: Center(
-          //       child: Text('Global',
-          //           style: TextStyle(fontSize: 25.0),
-          //           textAlign: TextAlign.center)),
-          // ),
-          // customeTime2("New Case", countryNewConfirmed, 0xFF1E88E5),
-          // customeTime2("Total Case", countrytotalConfirmed, 0xFFE040FB),
-          // customeTime2("New Recoverd", countryNewRecovered, 0xFF00E676),
-          // customeTime2("Total Recoverd", countryTotalRecovered, 0xFF76FF03),
-          // customeTime2("Total Deaths", countryTotalDeaths, 0xFFF44336),
-          // customeTime2("New Deaths", countryNewDeaths, 0xFFD32F2F),
+          Card(
+            color: Colors.red[700],
+            child: Center(
+                child: Text('Global',
+                    style: TextStyle(fontSize: 25.0),
+                    textAlign: TextAlign.center)),
+          ),
+          customeTime2("New Case", globalNewConfirmed, 0xFF1E88E5),
+          customeTime2("Total Recoverd", globalTotalRecovered, 0xFF76FF03),
+          customeTime2("New Recoverd", globalNewRecovered, 0xFF00E676),
+          customeTime2("New Deaths", globalNewDeaths, 0xFFD32F2F),
+          customeTime2("Total Deaths", globalTotalDeaths, 0xFFF44336),
+          customeTime2("Total Case", globaltotalConfirmed, 0xFFE040FB),
         ],
         staggeredTiles: [
           //local
           StaggeredTile.extent(3, 70), //for dropbox
+          StaggeredTile.extent(3, 70), //for title
+          //above is title
+          StaggeredTile.extent(1, 80),
+          StaggeredTile.extent(2, 200),
+          StaggeredTile.extent(1, 80),
+          StaggeredTile.extent(1, 170),
+          StaggeredTile.extent(1, 135),
+          StaggeredTile.extent(1, 135),
+
+          //global
           StaggeredTile.extent(3, 50), //for title
           //above is title
           StaggeredTile.extent(1, 80),
           StaggeredTile.extent(2, 200),
           StaggeredTile.extent(1, 80),
           StaggeredTile.extent(1, 170),
-          StaggeredTile.extent(1, 130),
-          StaggeredTile.extent(1, 130),
-
-          //global
-          //StaggeredTile.extent(3, 50), //for title
-          //above is title
-          // StaggeredTile.extent(1, 80),
-          // StaggeredTile.extent(2, 200),
-          // StaggeredTile.extent(1, 80),
-          // StaggeredTile.extent(1, 170),
-          // StaggeredTile.extent(2, 130),
-          // StaggeredTile.extent(2, 130),
+          StaggeredTile.extent(2, 135),
+          StaggeredTile.extent(3, 130),
         ],
       ),
     );
