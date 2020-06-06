@@ -89,72 +89,74 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Colors.blue[900],
       ),
-      body: updatedTime == null ? loadingScreen() : StaggeredGridView.count( 
-        crossAxisCount: 3,
-        crossAxisSpacing: 5.0,
-        mainAxisSpacing: 5.0,
-        children: <Widget>[
-          _searchableDropdown(),
-          Card(
-            color: Colors.green[800],
-            child: Column(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  '$selectedCountryName',
-                  style: TextStyle(fontSize: 15.0),
+      body: updatedTime == null
+          ? loadingScreen()
+          : StaggeredGridView.count(
+              crossAxisCount: 3,
+              crossAxisSpacing: 5.0,
+              mainAxisSpacing: 5.0,
+              children: <Widget>[
+                _searchableDropdown(),
+                Card(
+                  color: Colors.green[800],
+                  child: Column(children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        '$selectedCountryName',
+                        style: TextStyle(fontSize: 15.0),
+                      ),
+                    ),
+                    SizedBox(width: 40.0),
+                    Text(
+                      '$updatedTime',
+                      style: TextStyle(fontSize: 15.0),
+                    )
+                  ]),
                 ),
-              ),
-              SizedBox(width: 40.0),
-              Text(
-                '$updatedTime',
-                style: TextStyle(fontSize: 15.0),
-              )
-            ]),
-          ),
-          customeTime2("New Case", countryNewConfirmed, 0xFF1E88E5),
-          customeTime2("Total Case", countrytotalConfirmed, 0xFFE040FB),
-          customeTime2("New Recoverd", countryNewRecovered, 0xFF00E676),
-          customeTime2("Total Recoverd", countryTotalRecovered, 0xFF76FF03),
-          customeTime2("Total Deaths", countryTotalDeaths, 0xFFF44336),
-          customeTime2("New Deaths", countryNewDeaths, 0xFFD32F2F),
-          Card(
-            color: Colors.red[700],
-            child: Center(
-                child: Text('Global',
-                    style: TextStyle(fontSize: 25.0),
-                    textAlign: TextAlign.center)),
-          ),
-          customeTime2("New Case", globalNewConfirmed, 0xFF1E88E5),
-          customeTime2("Total Recoverd", globalTotalRecovered, 0xFF76FF03),
-          customeTime2("New Recoverd", globalNewRecovered, 0xFF00E676),
-          customeTime2("New Deaths", globalNewDeaths, 0xFFD32F2F),
-          customeTime2("Total Deaths", globalTotalDeaths, 0xFFF44336),
-          customeTime2("Total Case", globaltotalConfirmed, 0xFFE040FB),
-        ],
-        staggeredTiles: [
-          //local
-          StaggeredTile.extent(3, 70), //for dropbox
-          StaggeredTile.extent(3, 70), //for title
-          //above is title
-          StaggeredTile.extent(1, 80),
-          StaggeredTile.extent(2, 200),
-          StaggeredTile.extent(1, 80),
-          StaggeredTile.extent(1, 170),
-          StaggeredTile.extent(1, 135),
-          StaggeredTile.extent(1, 135),
+                gridItem("New Case", countryNewConfirmed, 0xFF1E88E5),
+                gridItem("Total Case", countrytotalConfirmed, 0xFFE040FB),
+                gridItem("New Recoverd", countryNewRecovered, 0xFF00E676),
+                gridItem("Total Recoverd", countryTotalRecovered, 0xFF76FF03),
+                gridItem("Total Deaths", countryTotalDeaths, 0xFFF44336),
+                gridItem("New Deaths", countryNewDeaths, 0xFFD32F2F),
+                Card(
+                  color: Colors.red[700],
+                  child: Center(
+                      child: Text('Global',
+                          style: TextStyle(fontSize: 25.0),
+                          textAlign: TextAlign.center)),
+                ),
+                gridItem("New Case", globalNewConfirmed, 0xFF1E88E5),
+                gridItem("Total Recoverd", globalTotalRecovered, 0xFF76FF03),
+                gridItem("New Recoverd", globalNewRecovered, 0xFF00E676),
+                gridItem("New Deaths", globalNewDeaths, 0xFFD32F2F),
+                gridItem("Total Deaths", globalTotalDeaths, 0xFFF44336),
+                gridItem("Total Case", globaltotalConfirmed, 0xFFE040FB),
+              ],
+              staggeredTiles: [
+                //local
+                StaggeredTile.extent(3, 70), //for dropbox
+                StaggeredTile.extent(3, 70), //for title
+                //above is title
+                StaggeredTile.extent(1, 80),
+                StaggeredTile.extent(2, 200),
+                StaggeredTile.extent(1, 80),
+                StaggeredTile.extent(1, 170),
+                StaggeredTile.extent(1, 135),
+                StaggeredTile.extent(1, 135),
 
-          //global
-          StaggeredTile.extent(3, 50), //for title
-          //above is title
-          StaggeredTile.extent(1, 80),
-          StaggeredTile.extent(2, 200),
-          StaggeredTile.extent(1, 80),
-          StaggeredTile.extent(1, 170),
-          StaggeredTile.extent(2, 135),
-          StaggeredTile.extent(3, 130),
-        ],
-      ),
+                //global
+                StaggeredTile.extent(3, 50), //for title
+                //above is title
+                StaggeredTile.extent(1, 80),
+                StaggeredTile.extent(2, 200),
+                StaggeredTile.extent(1, 80),
+                StaggeredTile.extent(1, 170),
+                StaggeredTile.extent(2, 135),
+                StaggeredTile.extent(3, 130),
+              ],
+            ),
     );
   }
 
@@ -180,14 +182,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget loadingScreen(){
+  Widget loadingScreen() {
     return Center(
-      child: CircularProgressIndicator() ,
+      child: CircularProgressIndicator(),
     );
   }
 
-
-  Widget customeTime2(String text, int amount, int color) {
+  Widget gridItem(String text, int amount, int color) {
     return Card(
         color: Color(color),
         elevation: 8.0,
