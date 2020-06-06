@@ -50,8 +50,6 @@ class _HomePageState extends State<HomePage> {
 
   void init() async {
     _globalData = await global.getGlobalData();
-    print('$_globalData');
-
     _list = await Countries.getAllCountries();
     selectedRegion = 'Sri Lanka'; //this must be initialized here....
     setState(() {});
@@ -60,7 +58,7 @@ class _HomePageState extends State<HomePage> {
 
   _getCountryData(region) async {
     _countryData = await Country.getCountryData(region);
-    updatedTime = await DateFormat("yMMMMd")
+    updatedTime = DateFormat("yMMMMd")
         .add_jm()
         .format(DateTime.parse(_countryData['Date']));
 
@@ -91,7 +89,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Colors.blue[900],
       ),
-      body: StaggeredGridView.count(
+      body: updatedTime == null ? loadingScreen() : StaggeredGridView.count( 
         crossAxisCount: 3,
         crossAxisSpacing: 5.0,
         mainAxisSpacing: 5.0,
@@ -181,6 +179,13 @@ class _HomePageState extends State<HomePage> {
       isExpanded: true,
     );
   }
+
+  Widget loadingScreen(){
+    return Center(
+      child: CircularProgressIndicator() ,
+    );
+  }
+
 
   Widget customeTime2(String text, int amount, int color) {
     return Card(
