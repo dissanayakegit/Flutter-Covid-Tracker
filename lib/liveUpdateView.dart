@@ -12,18 +12,18 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
   LiveUpdate liveUpdate = LiveUpdate();
   Map _liveData;
 
-  var update_date_time;
-  var local_new_cases;
-  var local_total_cases;
-  var local_total_number_of_individuals_in_hospitals;
-  var local_deaths;
-  var local_recovered;
-  var local_active_cases;
+  var updateDateTime;
+  var localNewCases;
+  var localTotalCases;
+  var localTotalNumberOfIndividualsInHospitals;
+  var localDeaths;
+  var localRecovered;
+  var localActiveCases;
 
-  var global_new_cases;
-  var global_total_cases;
-  var global_deaths;
-  var global_recovered;
+  var globalNewCases;
+  var globalTotalCases;
+  var globalDeaths;
+  var globalRecovered;
 
   String updatedTime;
 
@@ -41,19 +41,19 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
         .format(DateTime.parse(_liveData['update_date_time']));
 
     setState(() {
-      update_date_time = _liveData['update_date_time'];
-      local_new_cases = _liveData['local_new_cases'];
-      local_total_cases = _liveData['local_total_cases'];
-      local_total_number_of_individuals_in_hospitals =
+      updateDateTime = _liveData['update_date_time'];
+      localNewCases = _liveData['local_new_cases'];
+      localTotalCases = _liveData['local_total_cases'];
+      localTotalNumberOfIndividualsInHospitals =
           _liveData['local_total_number_of_individuals_in_hospitals'];
-      local_deaths = _liveData['local_deaths'];
-      local_recovered = _liveData['local_recovered'];
-      local_active_cases = _liveData['local_active_cases'];
+      localDeaths = _liveData['local_deaths'];
+      localRecovered = _liveData['local_recovered'];
+      localActiveCases = _liveData['local_active_cases'];
 
-      global_new_cases = _liveData['global_new_cases'];
-      global_total_cases = _liveData['global_total_cases'];
-      global_deaths = _liveData['global_deaths'];
-      global_recovered = _liveData['global_recovered'];
+      globalNewCases = _liveData['global_new_cases'];
+      globalTotalCases = _liveData['global_total_cases'];
+      globalDeaths = _liveData['global_deaths'];
+      globalRecovered = _liveData['global_recovered'];
     });
   }
 
@@ -89,14 +89,14 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
                     )
                   ]),
                 ),
-                gridItem("New Case", local_new_cases, 0xFF1E88E5),
-                gridItem("Total Case", local_total_cases, 0xFFE040FB),
-                                gridItem("Total Recovered", local_recovered, 0xFF76FF03),
+                gridItem("New Case", localNewCases, 0xFF1E88E5),
+                gridItem("Total Case", localTotalCases, 0xFFE040FB),
+                                gridItem("Total Recovered", localRecovered, 0xFF76FF03),
 
-                gridItem("Total Deaths", local_deaths, 0xFFF44336),
+                gridItem("Total Deaths", localDeaths, 0xFFF44336),
                 gridItem("Hospitalized",
-                    local_total_number_of_individuals_in_hospitals, 0xFF00E676),
-                                    gridItem("Active Cases", local_active_cases, 0xFFD32F2F),
+                    localTotalNumberOfIndividualsInHospitals, 0xFF00E676),
+                                    gridItem("Active Cases", localActiveCases, 0xFFD32F2F),
 
                 Card(
                   color: Colors.red[700],
@@ -105,10 +105,10 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
                           style: TextStyle(fontSize: 25.0),
                           textAlign: TextAlign.center)),
                 ),
-                gridItem("New Case", global_new_cases, 0xFF1E88E5),
-                gridItem("Total Case", global_total_cases, 0xFFE040FB),
-                gridItem("Total Recoverd", global_recovered, 0xFF76FF03),
-                gridItem("Total Deaths", global_deaths, 0xFFF44336),
+                gridItem("New Case", globalNewCases, 0xFF1E88E5),
+                gridItem("Total Case", globalTotalCases, 0xFFE040FB),
+                gridItem("Total Recoverd", globalDeaths, 0xFF76FF03),
+                gridItem("Total Deaths", globalRecovered, 0xFFF44336),
               ],
               staggeredTiles: [
                 StaggeredTile.extent(3, 70), //for title
