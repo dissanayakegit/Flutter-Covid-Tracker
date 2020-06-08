@@ -91,13 +91,11 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
                 ),
                 gridItem("New Case", localNewCases, 0xFF1E88E5),
                 gridItem("Total Case", localTotalCases, 0xFFE040FB),
-                                gridItem("Total Recovered", localRecovered, 0xFF76FF03),
-
+                gridItem("Total Recovered", localRecovered, 0xFF76FF03),
                 gridItem("Total Deaths", localDeaths, 0xFFF44336),
                 gridItem("Hospitalized",
                     localTotalNumberOfIndividualsInHospitals, 0xFF00E676),
-                                    gridItem("Active Cases", localActiveCases, 0xFFD32F2F),
-
+                gridItem("Active Cases", localActiveCases, 0xFFD32F2F),
                 Card(
                   color: Colors.red[700],
                   child: Center(
@@ -117,7 +115,7 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
                 StaggeredTile.extent(2, 150), //total cases
                 StaggeredTile.extent(1, 100), //total recovered
                 StaggeredTile.extent(1, 130), //total deaths
-                StaggeredTile.extent(1, 130), //hospitalized 
+                StaggeredTile.extent(1, 130), //hospitalized
                 StaggeredTile.extent(1, 95), //active cases
 
                 StaggeredTile.extent(3, 70), //for title
