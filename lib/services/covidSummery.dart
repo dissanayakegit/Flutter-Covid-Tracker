@@ -134,16 +134,20 @@ class LastFewDates {
     return LastFewDates(cases: json['Cases'], date: json['Date']);
   }
 
-   Future<Map<String, dynamic>> getLAstFewDatesUpdates() async {
+  Future<Map<String, dynamic>> getLAstFewDatesUpdates() async {
     Map<String, dynamic> countryData = {};
-    final String url = 'https://api.covid19api.com/total/country/south-africa/status/confirmed';
+    final String url =
+        'https://api.covid19api.com/total/country/south-africa/status/confirmed';
 
     try {
       var response = await http.get(url);
       var jsondata = jsonDecode(response.body);
+      countryData = jsondata;
+      return countryData;
       print(jsondata);
     } catch (e) {
       print(e);
+      return countryData;
     }
   }
 }

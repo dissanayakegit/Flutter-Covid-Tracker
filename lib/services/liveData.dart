@@ -13,46 +13,46 @@ class Wholedata {
 }
 
 class LiveUpdate {
-  final String update_date_time;
-  final String local_new_cases;
-  final String local_total_cases;
-  final String local_total_number_of_individuals_in_hospitals;
-  final String local_deaths;
-  final String local_recovered;
-  final String local_active_cases;
+  final String updateDateTime;
+  final String localNewCases;
+  final String localTotalCases;
+  final String localTotalNumberOfIndividualsInHospitals;
+  final String localDeaths;
+  final String localRecovered;
+  final String localActiveCases;
 
-  final String global_new_cases;
-  final String global_total_cases;
-  final String global_deaths;
-  final String global_recovered;
+  final String globalNewCases;
+  final String globalTotalCases;
+  final String globalDeaths;
+  final String globalRecovered;
 
   LiveUpdate(
-      {this.update_date_time,
-      this.local_new_cases,
-      this.local_total_cases,
-      this.local_total_number_of_individuals_in_hospitals,
-      this.local_deaths,
-      this.local_recovered,
-      this.local_active_cases,
-      this.global_new_cases,
-      this.global_total_cases,
-      this.global_deaths,
-      this.global_recovered});
+      {this.updateDateTime,
+      this.localNewCases,
+      this.localTotalCases,
+      this.localTotalNumberOfIndividualsInHospitals,
+      this.localDeaths,
+      this.localRecovered,
+      this.localActiveCases,
+      this.globalNewCases,
+      this.globalTotalCases,
+      this.globalDeaths,
+      this.globalRecovered});
 
   factory LiveUpdate.fromJson(Map<String, dynamic> json) {
     return LiveUpdate(
-        update_date_time: json['update_date_time'],
-        local_new_cases: json['local_new_cases'],
-        local_total_cases: json['local_total_cases'],
-        local_total_number_of_individuals_in_hospitals:
+        updateDateTime: json['update_date_time'],
+        localNewCases: json['local_new_cases'],
+        localTotalCases: json['local_total_cases'],
+        localTotalNumberOfIndividualsInHospitals:
             json['local_total_number_of_individuals_in_hospitals'],
-        local_deaths: json['local_deaths'],
-        local_recovered: json['local_recovered'],
-        local_active_cases: json['local_active_cases'],
-        global_new_cases: json['global_new_cases'],
-        global_total_cases: json['global_total_cases'],
-        global_deaths: json['global_deaths'],
-        global_recovered: json['global_recovered']);
+        localDeaths: json['local_deaths'],
+        localRecovered: json['local_recovered'],
+        localActiveCases: json['local_active_cases'],
+        globalNewCases: json['global_new_cases'],
+        globalTotalCases: json['global_total_cases'],
+        globalDeaths: json['global_deaths'],
+        globalRecovered: json['global_recovered']);
   }
 
   Future<Map<String, dynamic>> getLiveData() async {
@@ -64,7 +64,6 @@ class LiveUpdate {
     try {
       var response = await http.get(url);
       var jsondata = jsonDecode(response.body);
-      print(jsondata['data']);
       countryData = jsondata['data'];
       return countryData;
     } catch (e) {
