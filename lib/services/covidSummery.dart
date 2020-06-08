@@ -144,7 +144,6 @@ class LastFewDates {
       var jsondata = jsonDecode(response.body);
       countryData = jsondata;
       return countryData;
-      print(jsondata);
     } catch (e) {
       print(e);
       return countryData;
