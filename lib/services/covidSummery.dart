@@ -123,3 +123,27 @@ class Country {
     }
   }
 }
+
+class LastFewDates {
+  final String cases;
+  final String date;
+
+  LastFewDates({this.cases, this.date});
+
+  factory LastFewDates.fromJson(Map<String, dynamic> json) {
+    return LastFewDates(cases: json['Cases'], date: json['Date']);
+  }
+
+   Future<Map<String, dynamic>> getLAstFewDatesUpdates() async {
+    Map<String, dynamic> countryData = {};
+    final String url = 'https://api.covid19api.com/total/country/south-africa/status/confirmed';
+
+    try {
+      var response = await http.get(url);
+      var jsondata = jsonDecode(response.body);
+      print(jsondata);
+    } catch (e) {
+      print(e);
+    }
+  }
+}
