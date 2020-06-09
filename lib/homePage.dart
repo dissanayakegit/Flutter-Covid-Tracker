@@ -56,11 +56,21 @@ class _HomePageState extends State<HomePage> {
     _getCountryData('Sri Lanka');
   }
 
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
   _getCountryData(region) async {
     _countryData = await Country.getCountryData(region);
-    updatedTime = DateFormat("yMMMMd")
-        .add_jm()
-        .format(DateTime.parse(_countryData['Date']));
+
+    if (_countryData['Date'] != null) {
+      updatedTime = DateFormat("yMMMMd")
+          .add_jm()
+          .format(DateTime.parse(_countryData['Date']));
+    }
 
     setState(() {
       selectedCountryName = _countryData['Country'];

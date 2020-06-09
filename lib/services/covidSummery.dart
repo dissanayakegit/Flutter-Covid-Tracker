@@ -45,7 +45,7 @@ class Global {
   }
 
   Future<Map<String, dynamic>> getGlobalData() async {
-    Map<dynamic, dynamic> globalData = {};
+    Map<String, dynamic> globalData = {};
     final String url = 'https://api.covid19api.com/summary';
 
     try {
