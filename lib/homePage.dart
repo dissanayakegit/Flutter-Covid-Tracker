@@ -82,7 +82,13 @@ class _HomePageState extends State<HomePage> {
       countryNewRecovered = _countryData['NewRecovered'];
       countryTotalRecovered = _countryData['TotalRecovered'];
       dateOfStatus = _countryData['Date'];
-      activeCases = countrytotalConfirmed - (countryTotalRecovered + countryTotalDeaths);
+
+      if (countrytotalConfirmed != null &&
+          countryTotalRecovered != null &&
+          countryTotalDeaths != null) {
+        activeCases = countrytotalConfirmed -
+            (countryTotalRecovered + countryTotalDeaths);
+      }
 
       globaltotalConfirmed = _globalData['TotalConfirmed'];
       globalNewConfirmed = _globalData['NewConfirmed'];
@@ -158,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                 StaggeredTile.extent(2, 80), //active cases
                 StaggeredTile.extent(1, 170), //total revcovered
                 StaggeredTile.extent(1, 135), //total deaths
-                StaggeredTile.extent(1, 135),//new deaths
+                StaggeredTile.extent(1, 135), //new deaths
 
                 //global
                 StaggeredTile.extent(3, 50), //for title
