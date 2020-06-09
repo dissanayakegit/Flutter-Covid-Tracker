@@ -105,8 +105,8 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
                 ),
                 gridItem("New Case", globalNewCases, 0xFF1E88E5),
                 gridItem("Total Case", globalTotalCases, 0xFFE040FB),
-                gridItem("Total Recoverd", globalDeaths, 0xFF76FF03),
-                gridItem("Total Deaths", globalRecovered, 0xFFF44336),
+                gridItem("Total Recoverd", globalRecovered, 0xFF76FF03),
+                gridItem("Total Deaths", globalDeaths, 0xFFF44336),
               ],
               staggeredTiles: [
                 StaggeredTile.extent(3, 70), //for title
