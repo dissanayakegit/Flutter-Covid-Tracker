@@ -62,11 +62,11 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
     return updatedTime == null
         ? loadingScreen()
         : Scaffold(
-            appBar: AppBar(
-              title: Text('Covid19 Live Data'),
-              centerTitle: true,
-              backgroundColor: Colors.blue[900],
-            ),
+            // appBar: AppBar(
+            //   title: Text('Covid19 Live Data'),
+            //   centerTitle: true,
+            //   backgroundColor: Colors.blue[900],
+            // ),
             body: StaggeredGridView.count(
               crossAxisCount: 3,
               crossAxisSpacing: 5.0,
@@ -118,7 +118,7 @@ class _LiveUpdateViewState extends State<LiveUpdateView> {
                 StaggeredTile.extent(1, 130), //hospitalized
                 StaggeredTile.extent(1, 95), //active cases
 
-                StaggeredTile.extent(3, 70), //for title
+                StaggeredTile.extent(3, 50), //for title
 
                 StaggeredTile.extent(1, 80), //new case
                 StaggeredTile.extent(2, 150), //total case

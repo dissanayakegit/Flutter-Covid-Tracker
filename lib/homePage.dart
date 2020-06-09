@@ -84,11 +84,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Covid19 Summery'),
-        centerTitle: true,
-        backgroundColor: Colors.blue[900],
-      ),
+      // appBar: AppBar(
+      //   title: Text('Covid19 Summery'),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.blue[900],
+      // ),
       body: updatedTime == null
           ? loadingScreen()
           : StaggeredGridView.count(
