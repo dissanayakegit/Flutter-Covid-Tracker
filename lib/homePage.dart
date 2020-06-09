@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
   var countryNewRecovered;
   var countryTotalRecovered;
   var dateOfStatus;
+  var activeCases;
 
   var globalName;
   var globaltotalConfirmed;
@@ -81,6 +82,7 @@ class _HomePageState extends State<HomePage> {
       countryNewRecovered = _countryData['NewRecovered'];
       countryTotalRecovered = _countryData['TotalRecovered'];
       dateOfStatus = _countryData['Date'];
+      activeCases = countrytotalConfirmed - (countryTotalRecovered + countryTotalDeaths);
 
       globaltotalConfirmed = _globalData['TotalConfirmed'];
       globalNewConfirmed = _globalData['NewConfirmed'];
@@ -127,6 +129,7 @@ class _HomePageState extends State<HomePage> {
                 gridItem("New Case", countryNewConfirmed, 0xFF1E88E5),
                 gridItem("Total Case", countrytotalConfirmed, 0xFFE040FB),
                 gridItem("New Recoverd", countryNewRecovered, 0xFF00E676),
+                gridItem("Active Cases", activeCases, 0xFF90A4AE),
                 gridItem("Total Recoverd", countryTotalRecovered, 0xFF76FF03),
                 gridItem("Total Deaths", countryTotalDeaths, 0xFFF44336),
                 gridItem("New Deaths", countryNewDeaths, 0xFFD32F2F),
@@ -149,12 +152,13 @@ class _HomePageState extends State<HomePage> {
                 StaggeredTile.extent(3, 70), //for dropbox
                 StaggeredTile.extent(3, 70), //for title
                 //above is title
-                StaggeredTile.extent(1, 80),
-                StaggeredTile.extent(2, 200),
-                StaggeredTile.extent(1, 80),
-                StaggeredTile.extent(1, 170),
-                StaggeredTile.extent(1, 135),
-                StaggeredTile.extent(1, 135),
+                StaggeredTile.extent(1, 80), //new cases
+                StaggeredTile.extent(2, 120), //total case
+                StaggeredTile.extent(1, 80), //new recovered
+                StaggeredTile.extent(2, 80), //active cases
+                StaggeredTile.extent(1, 170), //total revcovered
+                StaggeredTile.extent(1, 135), //total deaths
+                StaggeredTile.extent(1, 135),//new deaths
 
                 //global
                 StaggeredTile.extent(3, 50), //for title
