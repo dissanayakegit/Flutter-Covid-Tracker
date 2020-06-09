@@ -126,8 +126,8 @@ class _HomePageState extends State<HomePage> {
                     )
                   ]),
                 ),
-                gridItem("New Case", countryNewConfirmed, 0xFF1E88E5),
-                gridItem("Total Case", countrytotalConfirmed, 0xFFE040FB),
+                gridItem("New Cases", countryNewConfirmed, 0xFF1E88E5),
+                gridItem("Total Cases", countrytotalConfirmed, 0xFFE040FB),
                 gridItem("New Recoverd", countryNewRecovered, 0xFF00E676),
                 gridItem("Active Cases", activeCases, 0xFF90A4AE),
                 gridItem("Total Recoverd", countryTotalRecovered, 0xFF76FF03),
@@ -140,12 +140,12 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(fontSize: 25.0),
                           textAlign: TextAlign.center)),
                 ),
-                gridItem("New Case", globalNewConfirmed, 0xFF1E88E5),
+                gridItem("New Cases", globalNewConfirmed, 0xFF1E88E5),
                 gridItem("Total Recoverd", globalTotalRecovered, 0xFF76FF03),
                 gridItem("New Recoverd", globalNewRecovered, 0xFF00E676),
                 gridItem("New Deaths", globalNewDeaths, 0xFFD32F2F),
                 gridItem("Total Deaths", globalTotalDeaths, 0xFFF44336),
-                gridItem("Total Case", globaltotalConfirmed, 0xFFE040FB),
+                gridItem("Total Cases", globaltotalConfirmed, 0xFFE040FB),
               ],
               staggeredTiles: [
                 //local
