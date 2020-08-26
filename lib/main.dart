@@ -14,7 +14,7 @@ void main() => runApp(MaterialApp(
 
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Covid 19 Summery'),
+            title: Text('Covid 19 Sumary'),
             backgroundColor: Colors.green,
             centerTitle: true,
             bottom: TabBar(
