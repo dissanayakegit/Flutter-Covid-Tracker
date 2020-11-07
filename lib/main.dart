@@ -14,8 +14,8 @@ void main() => runApp(MaterialApp(
 
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Covid 19 Sumary'),
-            backgroundColor: Colors.green,
+            title: Text('Covid 19 Summary'),
+            backgroundColor: Colors.grey,
             centerTitle: true,
             bottom: TabBar(
               tabs: <Widget>[
